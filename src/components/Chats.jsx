@@ -1,6 +1,7 @@
 import { doc, onSnapshot } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/chatContext";
 // import { ChatContext } from "../context/ChatContext";
 import { db } from "../firebase";
 
@@ -8,7 +9,7 @@ const Chats = () => {
 
   const [chats,setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
-  // const { dispatch } = useContext(ChatContext);
+  const { dispatch } = useContext(ChatContext);
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
@@ -29,7 +30,7 @@ const Chats = () => {
 
   return (
     <div className="chats">
-      {Object.entries(chats)?.map((chat) => (
+      {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div
           className="userChat"
           key={chat[0]}

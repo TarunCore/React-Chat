@@ -6,6 +6,11 @@
 }
 $darkColor:#2f2d52;
 
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .formContainer{
     background-color: #a7bcff;
     height: 100vh;
@@ -194,7 +199,8 @@ $darkColor:#2f2d52;
                 background-color: #ddddf7;
                 padding: 10px;
                 height: calc(100% - 160px);
-                overflow: scroll;
+                overflow-x: hidden;
+                overflow-y: scroll;
                 .message{
                     display: flex;
                     gap: 20px;
